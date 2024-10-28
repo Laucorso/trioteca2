@@ -48,12 +48,12 @@
         <tbody>
             @forelse ($appraisals as $appraisal)
                 <tr>
-                    <td>{{ $appraisal['client']['name'] ?? 'N/A' }}</td>
-                    <td>{{ $appraisal['property_address'] }}</td>
-                    <td>{{ $appraisal['property_price'] ? '€' . number_format($appraisal['property_price'], 2) : 'No disponible' }}</td>
+                    <td>{{ $appraisal->client->name ?? 'N/A' }}</td>
+                    <td>{{ $appraisal->property_address }}</td>
+                    <td>{{ $appraisal->property_price ? '€' . number_format($appraisal->property_price, 2) : 'No disponible' }}</td>
                     <select class="form-control status-selector" data-appraisal-id="{{ $appraisal['id'] }}">
                         @foreach(['Solicitado', 'En proceso', 'Tasación completada', 'Rechazado'] as $status)
-                            <option value="{{ $status }}" {{ $appraisal['status'] == $status ? 'selected' : '' }}>
+                            <option value="{{ $status }}" {{ $appraisal->status == $status ? 'selected' : '' }}>
                                 {{ $status }}
                             </option>
                         @endforeach
@@ -68,8 +68,8 @@
                             Eliminar
                         </a>
                     </td>-->
-                    <td>{{ $appraisal['created_at']->format('d-m-Y') }}</td>
-                    <td>{{ $appraisal['updated_at']->format('d-m-Y') }}</td>
+                    <td>{{ $appraisal->created_at->format('d-m-Y') }}</td>
+                    <td>{{ $appraisal->updated_at->format('d-m-Y') }}</td>
                 </tr>
             @empty
                 <tr>
@@ -78,6 +78,10 @@
             @endforelse
         </tbody>
     </table>
+
+    <div class="d-flex justify-content-center">
+        {{ $appraisals->links() }} 
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="createAppraisalModal" tabindex="-1" aria-labelledby="createAppraisalModalLabel" aria-hidden="true">

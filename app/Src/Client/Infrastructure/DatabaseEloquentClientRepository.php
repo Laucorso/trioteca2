@@ -22,9 +22,9 @@ class DatabaseEloquentClientRepository implements ClientRepository
         return $this->model->findOrFail($id)->toArray();
     }
 
-    public function findAll(): array
+    public function findAll(): Client
     {
-        return $this->model->get()->toArray();
+        return $this->model->get();
     }
 
     public function save(array $params) : array

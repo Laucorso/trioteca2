@@ -6,6 +6,7 @@ namespace App\Src\Address\Infrastructure;
 
 use App\Models\Appraisal;
 use App\Src\Appraisal\Domain\AppraisalRepository;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class DatabaseEloquentAppraisalRepository implements AppraisalRepository
 {
@@ -28,7 +29,7 @@ class DatabaseEloquentAppraisalRepository implements AppraisalRepository
         return $appraisal->audits->toArray();
     }
 
-    public function findAll(array $filters = []): array
+    public function findAll(array $filters = []): LengthAwarePaginator
     {
         $query = $this->model->query();
 
@@ -45,7 +46,7 @@ class DatabaseEloquentAppraisalRepository implements AppraisalRepository
         }
 
 
-        return $query->get()->toArray();
+        return $query->paginate(10);
     }
 
     public function save(array $params) : array

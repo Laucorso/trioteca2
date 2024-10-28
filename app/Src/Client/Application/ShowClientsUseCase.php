@@ -15,7 +15,7 @@ final class ShowClientsUseCase
     ) {
     }
 
-    public function execute(): array
+    public function execute(): Client
     {
         return $this->repository->findAll();
     }

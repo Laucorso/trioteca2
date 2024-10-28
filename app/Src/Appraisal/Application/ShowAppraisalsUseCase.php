@@ -6,7 +6,7 @@ namespace App\Src\Appraisal\Application;
 
 use App\Models\Appraisal;
 use App\Src\Appraisal\Domain\AppraisalRepository;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 final class ShowAppraisalsUseCase
 {
@@ -16,7 +16,7 @@ final class ShowAppraisalsUseCase
     ) {
     }
 
-    public function execute(?array $filters = []): array
+    public function execute(?array $filters = []): LengthAwarePaginator
     {
         return $this->repository->findAll($filters);
     }
