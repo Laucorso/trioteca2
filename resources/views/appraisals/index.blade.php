@@ -41,6 +41,8 @@
                 <th>Dirección de la Propiedad</th>
                 <th>Precio de la Propiedad</th>
                 <th>Estado</th>
+                <th>Gestionado Por</th>
+                <th>Acciones</th>
                 <th>Fecha de Creación</th>
                 <th>Última Actualización</th>
             </tr>
@@ -58,6 +60,7 @@
                             </option>
                         @endforeach
                     </select>
+                    <td>{{ $appraisal->managedByUser->name ?? 'N/A'}}</td>
                     <td>
                         <a href="{{ route('appraisals.logs', $appraisal->id) }}" class="btn btn-primary">
                             Ver Logs
